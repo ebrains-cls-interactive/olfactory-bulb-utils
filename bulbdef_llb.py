@@ -1,5 +1,5 @@
 # Olfactory Bulb space and boundary surfaces
-import params 
+import params_llb
 #all_dict = {
 #    "bulb_center" : (50.0, 1275.0, 0.0),
 #    "bulb_axis"   : (2100.0, 2800.0, 2100.0),
