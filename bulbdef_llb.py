@@ -52,7 +52,7 @@ import params_llb
 
 #aid_granule_begin = gid_mtufted_begin + Nmtufted
 import granules
-granules.init(params.bulbCenter, params.granAxisUp, params.granAxisDw, params.gran_voxel, params.gid_granule_begin)
+granules.init(params_llb.bulbCenter, params_llb.granAxisUp, params_llb.granAxisDw, params_llb.gran_voxel, params_llb.gid_granule_begin)
 #granules.init()
 #Ngranule = len(granules.ggid2pos)
 
@@ -68,34 +68,34 @@ granules.init(params.bulbCenter, params.granAxisUp, params.granAxisDw, params.gr
 #  gid_mgrs_begin += 1
 
 def gid_is_mitral(gid):
-  return gid >= params.gid_mitral_begin and gid < params.gid_mitral_begin+params.Nmitral
+  return gid >= params_llb.gid_mitral_begin and gid < params_llb.gid_mitral_begin+params_llb.Nmitral
 
 def gid_is_mtufted(gid):
-  return gid >= params.gid_mtufted_begin and gid < params.gid_mtufted_begin+params.Nmtufted
+  return gid >= params_llb.gid_mtufted_begin and gid < params_llb.gid_mtufted_begin+params_llb.Nmtufted
 
 def gid_is_granule(gid):
-  return gid >= params.gid_granule_begin and gid < params.gid_granule_begin+params.Ngranule
+  return gid >= params_llb.gid_granule_begin and gid < params_llb.gid_granule_begin+params_llb.Ngranule
 
 def gid_is_blanes(gid):
-  return gid >= params.gid_blanes_begin and gid < params.gid_blanes_begin+params.NBlanes
+  return gid >= params_llb.gid_blanes_begin and gid < params_llb.gid_blanes_begin+params_llb.NBlanes
 
 ''' useful only for mitral and tufted cells'''
 def cellid2glomid(cgid):
-  if cgid < params.Nmitral:
-    return cgid/params.Nmitral_per_glom
-  elif cgid < params.gid_mtufted_begin+params.Nmtufted:
-    return (cgid-params.gid_mtufted_begin)/params.Nmtufted_per_glom
+  if cgid < params_llb.Nmitral:
+    return cgid/params_llb.Nmitral_per_glom
+  elif cgid < params_llb.gid_mtufted_begin+params_llb.Nmtufted:
+    return (cgid-params_llb.gid_mtufted_begin)/params_llb.Nmtufted_per_glom
   return None
 
 ''' reciprocal synapses id to cells '''
 def rs2cell_gid(gid):
-  gid -= params.gid_mgrs_begin
+  gid -= params_llb.gid_mgrs_begin
   if gid % 2:
     gid -= 1
     
     example.py
-  gidtarget = int(gid / (2*params.Ngloms))
-  gidsrc = gid % (2*params.Ngloms)
+  gidtarget = int(gid / (2*params_llb.Ngloms))
+  gidsrc = gid % (2*params_llb.Ngloms)
   return gidsrc, gidtarget
 
 
