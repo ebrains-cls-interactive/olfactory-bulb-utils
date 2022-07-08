@@ -339,19 +339,23 @@ def generateMitralGranuleSynapses2(inputfolder, outputfolder, weightfn, dicfn, c
         granule_dict = {syn_gid: dic.gid_dict[syn_gid]}
         mt_cell = granule_dict[syn_gid][0]
         sec = granule_dict[syn_gid][1]
+        pos_inh = round(granule_dict[syn_gid][2], 3)
+        pos_exc = round(granule_dict[syn_gid][5], 3)
         gr_cell = granule_dict[syn_gid][3]
         if mt_cell not in all_connections:
             all_connections[mt_cell] = {}
         if sec not in all_connections[mt_cell]:
             all_connections[mt_cell][sec] = {}
         if gr_cell not in all_connections[mt_cell][sec]:
-            all_connections[mt_cell][sec][gr_cell] = [0, 0]
+            all_connections[mt_cell][sec][gr_cell] = {"inh":[], "exc":[]}
         syn_gid_str = str(syn_gid)
         syn_gid_str_plus = str(syn_gid - 1)
         if syn_gid_str in weights.keys():
-            all_connections[mt_cell][sec][gr_cell][0] = float(weights[syn_gid_str])
+            all_connections[mt_cell][sec][gr_cell]["inh"].append(float(weights[syn_gid_str]))
+            all_connections[mt_cell][sec][gr_cell]["inh"].append(pos_inh)
         if syn_gid_str_plus in weights.keys():
-            all_connections[mt_cell][sec][gr_cell][1] = float(weights[syn_gid_str_plus])
+            all_connections[mt_cell][sec][gr_cell]["exc"].append(float(weights[syn_gid_str_plus]))
+            all_connections[mt_cell][sec][gr_cell]["exc"].append(pos_exc)
         if mt_cell not in simulated_cells:
             simulated_cells.append(mt_cell)
     simulated_cells_sorted = sorted(simulated_cells)
