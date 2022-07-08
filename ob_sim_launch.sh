@@ -3,7 +3,7 @@
 #SBATCH --job-name="olfactory-bulb"
 #SBATCH --partition=normal
 #SBATCH --constraint=mc
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=NONE
 #SBATCH --account=ich002
 
 module swap PrgEnv-cray PrgEnv-intel
