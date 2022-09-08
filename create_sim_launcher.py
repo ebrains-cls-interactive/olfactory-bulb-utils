@@ -40,4 +40,4 @@ def main():
         f.write("runsim.run()\n")
 
 if __name__ == "__main__":
-    main().
+    main()
